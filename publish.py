@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
 
 import argparse
-import os
-import subprocess
-import shutil
 import glob
+import os
+import shutil
+import subprocess
 
-from download_net_runtime import update_netcore_runtime, PLATFORM_WINDOWS, PLATFORM_WINDOWS_ARM64, PLATFORM_LINUX, PLATFORM_LINUX_ARM64, PLATFORM_MACOS, PLATFORM_MACOS_ARM64
+from download_net_runtime import (
+    PLATFORM_LINUX,
+    PLATFORM_LINUX_ARM64,
+    PLATFORM_MACOS,
+    PLATFORM_MACOS_ARM64,
+    PLATFORM_WINDOWS,
+    PLATFORM_WINDOWS_ARM64,
+    update_netcore_runtime,
+)
 from exe_set_subsystem import set_subsystem
 
 TFM = "net10.0"
