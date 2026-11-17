@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
+using SS14.Launcher.Errors;
 
 namespace SS14.Launcher.Models.EngineManager;
 // This is an interface instead of a class because

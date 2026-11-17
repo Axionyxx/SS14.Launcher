@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Serilog;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Models;
 using SS14.Launcher.Models.Data;
 using SS14.Launcher.Utility;

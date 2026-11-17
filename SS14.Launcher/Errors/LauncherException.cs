@@ -1,6 +1,6 @@
 using System;
 
-namespace SS14.Launcher;
+namespace SS14.Launcher.Errors;
 
 /// <summary>
 /// A failure the launcher detected itself, with the <see cref="ErrorCode"/> that describes it.

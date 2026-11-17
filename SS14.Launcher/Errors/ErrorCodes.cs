@@ -1,4 +1,4 @@
-namespace SS14.Launcher;
+namespace SS14.Launcher.Errors;
 
 /// <summary>
 /// The catalog of all launcher error codes. See also <c>ERROR_CODES.md</c> in the repository root.

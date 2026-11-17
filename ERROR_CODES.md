@@ -12,7 +12,7 @@ Codes look like `SS14L-<AREA>-<NNN>`:
 | `IO` | Files and folders |
 | `GEN` | Anything else |
 
-Codes should NEVER be renumbered or reused. The source of truth is [`ErrorCodes.cs`](SS14.Launcher/ErrorCodes.cs).
+Codes should NEVER be renumbered or reused. The source of truth is [`ErrorCodes.cs`](SS14.Launcher/Errors/ErrorCodes.cs).
 
 ## NET
 

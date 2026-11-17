@@ -9,7 +9,7 @@ using Microsoft.Data.Sqlite;
 using SS14.Launcher.Utility;
 using YamlDotNet.Core;
 
-namespace SS14.Launcher;
+namespace SS14.Launcher.Errors;
 
 /// <summary>
 /// Turns arbitrary exceptions into an <see cref="ErrorCode"/>, so failures that nobody explicitly assigned a code to still show something useful.

@@ -1,6 +1,6 @@
 using System;
 
-namespace SS14.Launcher;
+namespace SS14.Launcher.Errors;
 
 /// <summary>
 /// A stable, language-independent identifier for a launcher failure.

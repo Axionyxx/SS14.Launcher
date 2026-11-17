@@ -18,6 +18,7 @@ using DynamicData;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Serilog;
 using Splat;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Models.Data;
 using SS14.Launcher.Models.EngineManager;
 using SS14.Launcher.Models.Logins;

@@ -9,6 +9,7 @@ using Dapper;
 using Microsoft.Data.Sqlite;
 using Serilog;
 using SharpZstd.Interop;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Models.ContentManagement;
 using SS14.Launcher.Utility;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using SS14.Launcher.Errors;
 using TerraFX.Interop.Windows;
 
 namespace SS14.Launcher;

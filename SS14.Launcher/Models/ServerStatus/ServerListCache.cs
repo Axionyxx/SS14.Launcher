@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Serilog;
 using Splat;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Utility;
 using SS14.Launcher.Api;
 using SS14.Launcher.Models.Data;

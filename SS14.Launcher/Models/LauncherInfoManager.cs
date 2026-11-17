@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Serilog;
+using SS14.Launcher.Errors;
 
 namespace SS14.Launcher.Models;
 

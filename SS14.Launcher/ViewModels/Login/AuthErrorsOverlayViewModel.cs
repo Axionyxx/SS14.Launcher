@@ -1,4 +1,5 @@
 using SS14.Launcher.Api;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Localization;
 
 namespace SS14.Launcher.ViewModels.Login;

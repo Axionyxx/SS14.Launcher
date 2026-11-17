@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Avalonia.Platform.Storage;
 using Splat;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Localization;
 using SS14.Launcher.Models;
 using SS14.Launcher.Utility;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using SS14.Launcher.Errors;
 
 namespace SS14.Launcher.Utility;
 

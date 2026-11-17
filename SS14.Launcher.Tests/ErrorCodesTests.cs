@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
+using SS14.Launcher.Errors;
 
 namespace SS14.Launcher.Tests;
 

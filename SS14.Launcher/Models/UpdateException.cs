@@ -1,4 +1,5 @@
 using System;
+using SS14.Launcher.Errors;
 
 namespace SS14.Launcher.Models;
 

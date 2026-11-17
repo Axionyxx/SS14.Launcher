@@ -18,6 +18,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using Serilog;
 using Splat;
 using SS14.Launcher.Api;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Localization;
 using SS14.Launcher.Models;
 using SS14.Launcher.Models.Data;

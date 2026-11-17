@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
+using SS14.Launcher.Errors;
 
 namespace SS14.Launcher.Tests;
 

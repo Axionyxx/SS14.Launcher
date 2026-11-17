@@ -1,6 +1,6 @@
 using SS14.Launcher.Localization;
 
-namespace SS14.Launcher;
+namespace SS14.Launcher.Errors;
 
 /// <summary>
 /// Short, translated advice that goes with an <see cref="ErrorCode"/>, such as "free up some disk space".

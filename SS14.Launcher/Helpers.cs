@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Mono.Unix;
 using Serilog;
+using SS14.Launcher.Errors;
 using SS14.Launcher.Utility;
 using TerraFX.Interop.Windows;
 using Win = TerraFX.Interop.Windows.Windows;
