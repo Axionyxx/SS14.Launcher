@@ -356,6 +356,9 @@ tab-development-disable-signing = Disable Engine Signature Checks
 tab-development-disable-signing-desc = { "[" }DEV ONLY] Disables verification of engine signatures. DO NOT ENABLE UNLESS YOU KNOW EXACTLY WHAT YOU'RE DOING.
 tab-development-enable-engine-override = Enable engine override
 tab-development-enable-engine-override-desc = Override path to load engine zips from (release/ in RobustToolbox)
+tab-development-error-testing = Error testing
+tab-development-error-testing-desc = Make the launcher fail on purpose, to see the error screens and codes. Some entries only write to the log, and one fully crashes the launcher.
+tab-development-error-testing-trigger = Trigger
 
 ## Strings for the "home" tab
 
