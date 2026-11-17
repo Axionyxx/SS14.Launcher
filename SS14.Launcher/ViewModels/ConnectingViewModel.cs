@@ -204,30 +204,27 @@ public class ConnectingViewModel : ViewModelBase
     }
 
     // The error code line for the current failure, including the exit code if the game exited.
-    private string ErrorCodeText
+    private string GetErrorCodeText()
     {
-        get
+        if (!IsErrored || _connector.FailureCode is not { } code)
+            return string.Empty;
+
+        if (_connector.ClientExitCode is not { } exitCode)
         {
-            if (!IsErrored || _connector.FailureCode is not { } code)
-                return string.Empty;
-
-            if (_connector.ClientExitCode is { } exitCode)
-            {
-                if (!OperatingSystem.IsWindows() && exitCode is > 128 and <= 192)
-                {
-                    return _loc.GetString("error-code-label-exit-signal",
-                               ("code", code.ToString()), ("exit", exitCode), ("signal", exitCode - 128))
-                           + "\n" + _loc.GetString("error-code-help");
-                }
-
-                return _loc.GetString("error-code-label-exit-code",
-                           ("code", code.ToString()), ("exit", exitCode))
-                       + "\n" + _loc.GetString("error-code-help");
-            }
-
             return _loc.GetString("error-code-label", ("code", code.ToString()))
                    + "\n" + _loc.GetString("error-code-help");
         }
+
+        if (!OperatingSystem.IsWindows() && exitCode is > 128 and <= 192)
+        {
+            return _loc.GetString("error-code-label-exit-signal",
+                       ("code", code.ToString()), ("exit", exitCode), ("signal", exitCode - 128))
+                   + "\n" + _loc.GetString("error-code-help");
+        }
+
+        return _loc.GetString("error-code-label-exit-code",
+                   ("code", code.ToString()), ("exit", exitCode))
+               + "\n" + _loc.GetString("error-code-help");
     }
 
     public string TitleText => _connectionType switch
@@ -288,7 +285,7 @@ public class ConnectingViewModel : ViewModelBase
         // "Failed to connect to server!" would only repeat the title, so it can go away >:(
         var message = StatusText;
         var code = _connector.FailureCode ?? ErrorCodes.GenUnexpected;
-        var codeText = ErrorCodeText;
+        var codeText = GetErrorCodeText();
 
         CloseOverlay();
         _windowVm.ShowFailureOverlay(_loc.GetString(titleKey), message, code, codeText);
