@@ -10,7 +10,6 @@ using Microsoft.Data.Sqlite;
 using Serilog;
 using SS14.Launcher.Models.Data;
 using SS14.Launcher.Utility;
-using SS14.Launcher.Models;
 
 namespace SS14.Launcher.Models.ContentManagement;
 
