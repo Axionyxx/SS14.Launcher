@@ -39,8 +39,7 @@
     <Compile Remove="ViewModels\MainWindowTabs\DevelopmentFailure.cs" />
     <Compile Remove="Views\MainWindowTabs\DevelopmentTabView.xaml.cs" />
     <Compile Remove="Utility\DevFakeServer.cs" />
-    <AvaloniaResource Remove="Views\MainWindowTabs\DevelopmentTabView.xaml" />
-    <AdditionalFiles Remove="Views\MainWindowTabs\DevelopmentTabView.xaml" />
+    <AvaloniaXaml Remove="Views\MainWindowTabs\DevelopmentTabView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" />
