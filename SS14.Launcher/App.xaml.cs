@@ -129,7 +129,7 @@ public class App : Application
 
     private void OnStartup(object? s, ControlledApplicationLifetimeStartupEventArgs e)
     {
-        Program.UiStarted = true;
+        StartupState.UiStarted();
 
         var loc = Locator.Current.GetRequiredService<LocalizationManager>();
         var msgr = Locator.Current.GetRequiredService<LauncherMessaging>();

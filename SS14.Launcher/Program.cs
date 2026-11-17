@@ -127,7 +127,7 @@ internal static class Program
 
         try
         {
-            UiStartAttempted = true;
+            StartupState.UiStarting();
             BuildAvaloniaApp(cfg).StartWithClassicDesktopLifetime(args);
         }
         catch (Exception ex)
@@ -180,28 +180,12 @@ internal static class Program
         }
     }
 
-    /// <summary>
-    /// Set just before the UI framework starts.
-    /// </summary>
-    private static bool UiStartAttempted;
-
-    /// <summary>
-    /// Set once the UI framework is up and the app began starting.
-    /// </summary>
-    internal static bool UiStarted;
-
-    /// <summary>
-    /// The code for a crash nothing else identified: if it happened while the UI framework was still starting
-    /// (no display, missing X11 or font libraries), say so, because that is the usual reason.
-    /// </summary>
-    private static ErrorCode CrashCode => UiStartAttempted && !UiStarted ? ErrorCodes.GenNoGraphics : ErrorCodes.GenCrash;
-
     private static void RegisterCrashHandlers()
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
             var exception = e.ExceptionObject as Exception ?? new Exception(e.ExceptionObject?.ToString());
-            var code = ErrorClassifier.ClassifyPrecisely(exception) ?? CrashCode;
+            var code = ErrorClassifier.ClassifyPrecisely(exception) ?? StartupState.CrashCode;
 
             Log.Fatal(exception, "Unhandled exception ({ErrorCode})", code);
             Log.CloseAndFlush();
