@@ -14,36 +14,6 @@ namespace SS14.Launcher.Tests;
 [Parallelizable(ParallelScope.All)]
 public class ErrorHintsTests
 {
-    private static string LocalePath(string fileName, [CallerFilePath] string thisFile = "")
-    {
-        var dir = Path.GetDirectoryName(thisFile)!;
-        return Path.GetFullPath(Path.Combine(dir, "..", "SS14.Launcher", "Assets", "Locale", "en-US", fileName));
-    }
-
-    private static string ReadLocale(string fileName)
-    {
-        var path = LocalePath(fileName);
-        Assert.That(File.Exists(path), $"The English locale file was not found at {path}");
-
-        return File.ReadAllText(path);
-    }
-
-    private static HashSet<string> MessageIds(string fileName)
-    {
-        var id = new Regex(@"^([a-z][a-z0-9-]*)\s*=", RegexOptions.Multiline);
-
-        return id.Matches(ReadLocale(fileName))
-            .Select(m => m.Groups[1].Value)
-            .ToHashSet();
-    }
-
-    private static HashSet<string> HintKeys()
-    {
-        return MessageIds("error.ftl")
-            .Where(id => Regex.IsMatch(id, @"^error-hint-[a-z]+-\d{3}$"))
-            .ToHashSet();
-    }
-
     [Test]
     public void ErrorStringsParseWithoutErrors()
     {
@@ -82,15 +52,6 @@ public class ErrorHintsTests
         Assert.That(stray, Is.Empty, "Generic error-hint strings that don't match any error area");
     }
 
-    private static List<ErrorCode> AllCodes()
-    {
-        return typeof(ErrorCodes)
-            .GetFields(BindingFlags.Public | BindingFlags.Static)
-            .Where(f => f.FieldType == typeof(ErrorCode))
-            .Select(f => (ErrorCode)f.GetValue(null)!)
-            .ToList();
-    }
-
     [Test]
     public void KeyNamesFollowTheCode()
     {
@@ -122,5 +83,44 @@ public class ErrorHintsTests
         var stray = HintKeys().Where(k => !known.Contains(k)).Order().ToList();
 
         Assert.That(stray, Is.Empty, "error-hint strings that don't match any error code");
+    }
+
+    private static string LocalePath(string fileName, [CallerFilePath] string thisFile = "")
+    {
+        var dir = Path.GetDirectoryName(thisFile)!;
+        return Path.GetFullPath(Path.Combine(dir, "..", "SS14.Launcher", "Assets", "Locale", "en-US", fileName));
+    }
+
+    private static string ReadLocale(string fileName)
+    {
+        var path = LocalePath(fileName);
+        Assert.That(File.Exists(path), $"The English locale file was not found at {path}");
+
+        return File.ReadAllText(path);
+    }
+
+    private static HashSet<string> MessageIds(string fileName)
+    {
+        var id = new Regex(@"^([a-z][a-z0-9-]*)\s*=", RegexOptions.Multiline);
+
+        return id.Matches(ReadLocale(fileName))
+            .Select(m => m.Groups[1].Value)
+            .ToHashSet();
+    }
+
+    private static HashSet<string> HintKeys()
+    {
+        return MessageIds("error.ftl")
+            .Where(id => Regex.IsMatch(id, @"^error-hint-[a-z]+-\d{3}$"))
+            .ToHashSet();
+    }
+
+    private static List<ErrorCode> AllCodes()
+    {
+        return typeof(ErrorCodes)
+            .GetFields(BindingFlags.Public | BindingFlags.Static)
+            .Where(f => f.FieldType == typeof(ErrorCode))
+            .Select(f => (ErrorCode)f.GetValue(null)!)
+            .ToList();
     }
 }
