@@ -155,12 +155,11 @@ public class App : Application
         var givingUp = false; // The "Shits cooked" flag
         Dispatcher.UIThread.UnhandledException += (_, args) =>
         {
+            args.Handled = true;
+
             // Already on the way out, the rest of the errors don't matter any more.
             if (givingUp)
-            {
-                args.Handled = true;
                 return;
-            }
 
             var code = ErrorClassifier.ClassifyPrecisely(args.Exception) ?? ErrorCodes.GenBackground;
             Log.Error(args.Exception, "Unhandled exception on the UI thread ({ErrorCode})", code);
@@ -168,7 +167,6 @@ public class App : Application
             if (errorLimiter.Record(DateTimeOffset.UtcNow))
             {
                 givingUp = true;
-                args.Handled = true;
 
                 Log.Fatal("{Limit} unhandled UI exceptions within {Window}, closing the launcher ({ErrorCode})",
                     UnhandledErrorLimit, UnhandledErrorWindow, code);
@@ -184,7 +182,6 @@ public class App : Application
                 return;
             }
 
-            args.Handled = true;
             viewModel.ShowErrorOverlay("error-overlay-title-unexpected", "error-overlay-desc-unexpected", code);
         };
 
