@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -93,7 +94,7 @@ public sealed class DevFakeServer : IDisposable
 
                 await stream.WriteAsync(Encoding.ASCII.GetBytes(BuildResponse(_mode)), _cancel.Token);
             }
-            catch (Exception e) when (e is OperationCanceledException or System.IO.IOException or SocketException)
+            catch (Exception e) when (e is OperationCanceledException or IOException or SocketException)
             {
                 // The client went away, fine.
             }
