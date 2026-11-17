@@ -102,25 +102,15 @@ public sealed class DevFakeServer : IDisposable
 
     private static string BuildResponse(DevFakeServerMode mode)
     {
-        switch (mode)
+        return mode switch
         {
-            case DevFakeServerMode.BadJson:
-                return Json("{ this is not json");
-
-            case DevFakeServerMode.NullJson:
-                return Json("null");
-
-            case DevFakeServerMode.NotFound:
-                return "HTTP/1.1 404 Not Found\r\nContent-Length: 0\r\nConnection: close\r\n\r\n";
-
-            case DevFakeServerMode.Truncated:
-                // Says 1000 bytes are coming and sends 9.
-                return "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 1000\r\n" +
-                       "Connection: close\r\n\r\n{\"build\":";
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(mode));
-        }
+            DevFakeServerMode.BadJson => Json("{ this is not json"),
+            DevFakeServerMode.NullJson => Json("null"),
+            DevFakeServerMode.NotFound => "HTTP/1.1 404 Not Found\r\nContent-Length: 0\r\nConnection: close\r\n\r\n",
+            DevFakeServerMode.Truncated => "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 1000\r\n" +
+                                   "Connection: close\r\n\r\n{\"build\":",// Says 1000 bytes are coming and sends 9.
+            _ => throw new ArgumentOutOfRangeException(nameof(mode)),
+        };
     }
 
     private static string Json(string body)
