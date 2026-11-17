@@ -6,7 +6,7 @@
 error-code-label = Error code: { $code }
 error-code-label-exit-code = Error code: { $code } (exit code { $exit })
 error-code-label-exit-signal = Error code: { $code } (exit code { $exit }, signal { $signal })
-error-code-help = Include this code when asking for help.
+error-code-help = Include this code when asking for help. You can select the text to copy it.
 
 ## Error overlays.
 
