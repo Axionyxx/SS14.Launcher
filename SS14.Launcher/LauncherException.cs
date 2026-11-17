@@ -13,7 +13,7 @@ public sealed class LauncherException(string message, ErrorCode code, Exception?
 
 /// <summary>
 /// Sent through the messenger when something fails somewhere that has no UI of its own.
-/// The main window shows it as an error overlay.
+/// The main window shows it as an error overlay, see <see cref="SS14.Launcher.ViewModels.MainWindowViewModel"/>.
 /// </summary>
 /// <param name="TitleKey">Localization key for the overlay title.</param>
 /// <param name="DescriptionKey">Localization key for the overlay text.</param>
