@@ -67,9 +67,10 @@ public sealed partial class Updater : ObservableObject
     public Exception? UpdateException;
 
     /// <summary>
-    /// The error code describing <see cref="UpdateException"/>.
+    /// The error code describing <see cref="UpdateException"/>, or null if there is none.
     /// </summary>
-    public ErrorCode? UpdateErrorCode;
+    public ErrorCode? UpdateErrorCode
+        => UpdateException is { } e ? ErrorClassifier.Classify(e, ErrorCodes.UpdUnexpected) : null;
 
     public async Task<ContentLaunchInfo?> RunUpdateForLaunchAsync(
         ServerBuildInformation buildInformation,
@@ -149,7 +150,6 @@ public sealed partial class Updater : ObservableObject
 
         _updating = true;
         UpdateException = null;
-        UpdateErrorCode = null;
 
         try
         {
@@ -165,7 +165,6 @@ public sealed partial class Updater : ObservableObject
         {
             Status = UpdateStatus.Error;
             UpdateException = e;
-            UpdateErrorCode = ErrorClassifier.Classify(e, ErrorCodes.UpdUnexpected);
             Log.Error(e, "Exception while trying to run updates ({ErrorCode})", UpdateErrorCode);
         }
         finally
