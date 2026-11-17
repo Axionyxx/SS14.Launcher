@@ -209,7 +209,7 @@ public class ConnectingViewModel : ViewModelBase
         get
         {
             if (!IsErrored || _connector.FailureCode is not { } code)
-                return "";
+                return string.Empty;
 
             if (_connector.ClientExitCode is { } exitCode)
             {
