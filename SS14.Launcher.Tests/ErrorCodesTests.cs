@@ -45,13 +45,16 @@ public class ErrorCodesTests
     {
         var format = new Regex(@"^SS14L-[A-Z]+-\d{3}$");
 
-        foreach (var (name, code) in GetAll())
+        Assert.Multiple(() =>
         {
-            Assert.That(Areas, Does.Contain(code.Area), $"{name} uses an unknown area");
-            // If we ever get more than 999 errors on an area, you are required to pay for my therapy.
-            Assert.That(code.Number, Is.InRange(1, 999), $"{name} has a number out of range");
-            Assert.That(format.IsMatch(code.ToString()), $"{name} is formatted as {code}");
-        }
+            foreach (var (name, code) in GetAll())
+            {
+                Assert.That(Areas, Does.Contain(code.Area), $"{name} uses an unknown area");
+                // If we ever get more than 999 errors on an area, you are required to pay for my therapy.
+                Assert.That(code.Number, Is.InRange(1, 999), $"{name} has a number out of range");
+                Assert.That(format.IsMatch(code.ToString()), $"{name} is formatted as {code}");
+            }
+        });
     }
 
     [Test]
@@ -59,13 +62,16 @@ public class ErrorCodesTests
     {
         // I told you not to remove errors!!!!!!! Hiss
         // Also stops you from doing a funny like 067 without all the error codes that come prior.
-        foreach (var group in GetAll().GroupBy(c => c.Code.Area))
+        Assert.Multiple(() =>
         {
-            var numbers = group.Select(c => c.Code.Number).Order().ToList();
+            foreach (var group in GetAll().GroupBy(c => c.Code.Area))
+            {
+                var numbers = group.Select(c => c.Code.Number).Order().ToList();
 
-            Assert.That(numbers, Is.EqualTo(Enumerable.Range(1, numbers.Count)),
-                $"Numbers in area {group.Key} are not contiguous from 1");
-        }
+                Assert.That(numbers, Is.EqualTo(Enumerable.Range(1, numbers.Count)),
+                    $"Numbers in area {group.Key} are not contiguous from 1");
+            }
+        });
     }
 
     [Test]
