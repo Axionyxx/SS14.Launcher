@@ -40,7 +40,6 @@ connecting-status-update-error-no-module-for-platform = This server requires add
 connecting-status-update-error-unknown = Unknown
 connecting-status-updating = Updating: { $status }
 connecting-status-connecting = Fetching connection info from server…
-connecting-status-connection-failed = Failed to connect to server!
 connecting-status-starting-client = Starting client…
 connecting-status-not-a-content-bundle = File is not a valid content bundle!
 connecting-status-client-crashed = Client seems to have crashed while starting. If this persists, please ask on Discord or GitHub for support.

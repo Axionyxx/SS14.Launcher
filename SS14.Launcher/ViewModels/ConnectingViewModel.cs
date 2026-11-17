@@ -183,7 +183,6 @@ public class ConnectingViewModel : ViewModelBase
                 _ => "connecting-update-status-unknown"
             }))) + _reasonSuffix,
             Connecting => _loc.GetString("connecting-status-connecting") + _reasonSuffix,
-            ConnectionFailed => _loc.GetString("connecting-status-connection-failed"),
             StartingClient => _loc.GetString("connecting-status-starting-client") + _reasonSuffix,
             NotAContentBundle => _loc.GetString("connecting-status-not-a-content-bundle"),
             ClientExited => _connector.ClientExitedBadly
@@ -287,7 +286,7 @@ public class ConnectingViewModel : ViewModelBase
             : "error-overlay-title-connect-failed";
 
         // "Failed to connect to server!" would only repeat the title, so it can go away >:(
-        var message = _connector.Status == ConnectionFailed ? "" : StatusText;
+        var message = StatusText;
         var code = _connector.FailureCode ?? ErrorCodes.GenUnexpected;
         var codeText = ErrorCodeText;
 
