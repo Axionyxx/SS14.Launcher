@@ -390,8 +390,8 @@ public readonly struct AuthenticateResult
     }
 
     /// <summary>
-    /// Our own error code for failures that didn't come from the server's deny response
-    /// (the server couldn't be reached, sent nonsense, etc).
+    /// Internal error code. Is usually provided when error was not 
+    /// caused by the server being unreachable or denying connection / request.
     /// </summary>
     public ErrorCode? FailureCode { get; }
 
