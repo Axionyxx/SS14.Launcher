@@ -26,6 +26,7 @@ public static class UnixErrno
 {
     // Identical on Linux, macOS and FreeBSD.
     private const int EPERM = 1;
+    private const int ENOENT = 2;
     private const int ENOEXEC = 8;
     private const int EACCES = 13;
     private const int EBUSY = 16;
@@ -97,6 +98,7 @@ public static class UnixErrno
     {
         return errno switch
         {
+            ENOENT => ErrorCodes.CliNoLoader,
             EACCES or EPERM => ErrorCodes.CliNotExecutable,
             ENOEXEC => ErrorCodes.CliCannotRun,
             ETXTBSY => ErrorCodes.IoInUse,

@@ -176,8 +176,7 @@ public static class ErrorClassifier
     public static ErrorCode? ClassifyProcessStart(int nativeError, bool windows)
     {
         if (!windows)
-            return nativeError == 2 ? ErrorCodes.CliNoLoader : UnixErrno.ClassifyProcessStart(nativeError);
-
+            return UnixErrno.ClassifyProcessStart(nativeError);
 
         return nativeError switch
         {
