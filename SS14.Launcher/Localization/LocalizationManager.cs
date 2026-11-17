@@ -85,6 +85,14 @@ public sealed class LocalizationManager
         return _bundle.GetMessage(key) ?? key;
     }
 
+    /// <summary>
+    /// Like <see cref="GetString(string)"/>, but returns null if there is no string with this key.
+    /// </summary>
+    public string? TryGetString(string key)
+    {
+        return _bundle.TryGetMessage(key, null, out _, out var message) ? message : null;
+    }
+
     public string GetString(string key, params (string, object?)[] args)
     {
         var argsDict = new Dictionary<string, IFluentType>(args.Length);

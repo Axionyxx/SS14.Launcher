@@ -1,3 +1,4 @@
+using System;
 using SS14.Launcher.Localization;
 
 namespace SS14.Launcher.Errors;
@@ -29,14 +30,14 @@ public static class ErrorHints
     /// </summary>
     public static string? Get(ErrorCode code, LocalizationManager loc)
     {
-        return Lookup(GetKey(code), loc) ?? Lookup(GetAreaKey(code), loc);
+        return Get(code, loc.TryGetString);
     }
 
-    private static string? Lookup(string key, LocalizationManager loc)
+    /// <summary>
+    /// Same as above, with the string lookup given as a function that returns null for a missing string.
+    /// </summary>
+    internal static string? Get(ErrorCode code, Func<string, string?> tryGetString)
     {
-        var text = loc.GetString(key);
-
-        // Asking for a string that doesn't exist gives back its name.
-        return text == key ? null : text;
+        return tryGetString(GetKey(code)) ?? tryGetString(GetAreaKey(code));
     }
 }
